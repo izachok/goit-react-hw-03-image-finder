@@ -44,7 +44,6 @@ export class App extends Component {
           this.setState({
             images: [...images, ...results.hits],
             isMoreAvailable,
-            page: 1,
             status: Status.RESOLVED,
           });
         })
@@ -86,13 +85,7 @@ export class App extends Component {
         {status === Status.REJECTED && <div>{error.message}</div>}
         <ImageGallery items={images} />
         {status === Status.PENDING && (
-          <Loader
-            type="Audio"
-            color="#00BFFF"
-            height={100}
-            width={100}
-            timeout={3000} //3 secs
-          />
+          <Loader type="Audio" color="#00BFFF" height={100} width={100} />
         )}
         {status === Status.RESOLVED && isMoreAvailable && (
           <Button onClick={this.handleLoadMore}>Load more</Button>
