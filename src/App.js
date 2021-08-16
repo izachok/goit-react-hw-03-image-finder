@@ -23,7 +23,11 @@ export class App extends Component {
     status: null,
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    return window.scrollY;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
     const { query, page, images } = this.state;
     if (this.state.status === Status.NEED_LOADING) {
       this.setState({ status: Status.PENDING });
@@ -50,7 +54,8 @@ export class App extends Component {
         .then(() => {
           if (page !== 1) {
             window.scrollTo({
-              top: document.documentElement.scrollHeight,
+              top: snapshot + window.innerHeight - 140,
+              left: 0,
               behavior: 'smooth',
             });
           }
