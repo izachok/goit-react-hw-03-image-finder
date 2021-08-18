@@ -42,7 +42,7 @@ export class ImageGallery extends Component {
             <img
               src={this.props.items[this.state.imageIndex].largeImageURL}
               alt={this.props.items[this.state.imageIndex].tags}
-            ></img>
+            />
           </Modal>
         )}
       </>
